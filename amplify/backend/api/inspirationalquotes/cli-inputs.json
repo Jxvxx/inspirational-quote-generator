@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "inspirationalquotes",
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "AWS_IAM"
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 20,
+        "apiKeyExpirationDate": "2023-07-22T16:35:00.711Z",
+        "keyDescription": "API key for inspirational quote generator"
+      }
+    ]
+  }
+}

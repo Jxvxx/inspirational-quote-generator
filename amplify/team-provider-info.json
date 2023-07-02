@@ -1,0 +1,29 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-inspirationalquotes-dev-84242-authRole",
+      "UnauthRoleArn": "arn:aws:iam::819628673843:role/amplify-inspirationalquotes-dev-84242-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::819628673843:role/amplify-inspirationalquotes-dev-84242-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-inspirationalquotes-dev-84242-deployment",
+      "UnauthRoleName": "amplify-inspirationalquotes-dev-84242-unauthRole",
+      "StackName": "amplify-inspirationalquotes-dev-84242",
+      "StackId": "arn:aws:cloudformation:us-east-1:819628673843:stack/amplify-inspirationalquotes-dev-84242/b49d0c80-18e6-11ee-baec-0a559a89207d",
+      "AmplifyAppId": "d3k0beh8zg7eey"
+    },
+    "categories": {
+      "auth": {
+        "inspirationalquotesea4cc00a": {}
+      },
+      "function": {
+        "inspoquoteLambda": {
+          "deploymentBucketName": "amplify-inspirationalquotes-dev-84242-deployment",
+          "s3Key": "amplify-builds/inspoquoteLambda-72644542686844584b6e-build.zip"
+        }
+      },
+      "api": {
+        "inspirationalquotes": {}
+      }
+    }
+  }
+}
