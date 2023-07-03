@@ -8,6 +8,7 @@ import styles from '@/styles/Home.module.css'
 // Componentes
 
 import { BackgroundImage1, BackgroundImage2, FooterCon, FooterLink, GenerateQuoteButton, GenerateQuoteButtonText, GradientBackgroundCon, QuoteGeneratorCon, QuoteGeneratorInnerCon, QuoteGeneratorSubTittle, QuoteGeneratorTittle } from '@/components/QuoteGenerator/QuoteGeneratorElements'
+import QuoteGeneratorModal from '@/components/QuoteGenerator'
 
 //Assets
 
@@ -41,6 +42,9 @@ function isGraphQLResultForquotesQueryName(response: any): response is GraphQLRe
 
 export default function Home() {
   const [numberOfQuotes, setNumberOfQuotes] = useState<Number | null>(0);
+  const [openGenerator, setOpenGenerator] = useState(false);
+  const [processingQuote, setProcessingQuote] = useState(false);
+  const [quoteReceived, setQuoteReceived] = useState<String | null>(null);
 
 //Function to fetch our DynamoDB object (quotes generated)
 const updateQuoteInfo = async () => {
@@ -82,6 +86,29 @@ useEffect(() => {
 
 }, [])
 
+//Function for quote generator modal 
+const handleCloseGenerator = () => {
+  setOpenGenerator(false); 
+}
+
+const handleOpenGenerator =async(e:React.SyntheticEvent) => {
+  e.preventDefault();
+  setOpenGenerator(true);
+  setProcessingQuote(true);
+  try{
+    //run LAMBDA function
+    //setProcessingQuote(false);
+    setTimeout(() => {
+      setProcessingQuote(false);
+    }, 3000);
+  } catch (error){
+    console.log('error generating quote: ', error );
+    setProcessingQuote(false);
+
+  }
+  
+}
+
 
   return (
     <>
@@ -93,14 +120,18 @@ useEffect(() => {
       </Head>
       {/*Background*/}
       <GradientBackgroundCon>
-        j
-
-
+        
         {/*Quote Modal*/}
 
         {/*Quote Generator Modal Pop-Up*/}
-        {/*<QuoteGeneratorModal
-        />*/}
+        {<QuoteGeneratorModal
+          open={openGenerator}
+          close={handleCloseGenerator}
+          processingQuote={processingQuote}
+          setProcessingQuote={setProcessingQuote}
+          quoteReceived={quoteReceived}
+          setQuoteReceived={setQuoteReceived}
+        />}
 
 
         {/*Quote Generador*/}
@@ -111,14 +142,12 @@ useEffect(() => {
             </QuoteGeneratorTittle>
             <QuoteGeneratorSubTittle>
 
-            Porque la salud mental importa. Genera un quote aleatorio de inspiracion! usando <FooterLink href="https://zenquotes.io/" target="_blank" rel="noopener noreferrer">ZenQuotes API</FooterLink>.
+            Porque la salud mental importa. Genera un quote aleatorio para la inspiracion!.
               
             </QuoteGeneratorSubTittle>
 
-            <GenerateQuoteButton>
-              <GenerateQuoteButtonText 
-              //onClick={null}
-              >
+            <GenerateQuoteButton onClick={handleOpenGenerator}>
+              <GenerateQuoteButtonText>
                 Genera un Quote
               </GenerateQuoteButtonText>
             </GenerateQuoteButton>
